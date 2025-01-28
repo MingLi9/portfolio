@@ -22,7 +22,7 @@ jobs:
 
     - name: List contents of / before upload
       run: |
-        sshpass -p "${{ secrets.SFTP_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_HOST }} "ls -la /"
+        sshpass -p "${{ secrets.SFTP_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_HOST }} "ls -la /root"
 
     # - name: Upload files via SFTP
     #   uses: appleboy/scp-action@v0.1.4
