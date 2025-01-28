@@ -20,10 +20,6 @@ jobs:
     - name: Build project
       run: CI=false npm run build
 
-    - name: List contents of / before upload
-      run: |
-        sshpass -p "${{ secrets.SFTP_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_HOST }} "ls -la /mnt/rid/24/04/546822404/htdocs/static"
-    
     - name: Upload files via SFTP
       uses: appleboy/scp-action@v0.1.4
       with:
@@ -31,10 +27,6 @@ jobs:
         username: ${{ secrets.SFTP_USERNAME }}
         password: ${{ secrets.SFTP_PASSWORD }}
         port: ${{ secrets.SFTP_PORT }}
-        source: "build/"
+        source: "/"
         target: "/mnt/rid/24/04/546822404/htdocs/"
         debug: true
-
-    - name: List contents of /static after upload
-      run: |
-        sshpass -p "${{ secrets.SFTP_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_HOST }} "ls -la /mnt/rid/24/04/546822404/htdocs/static"
