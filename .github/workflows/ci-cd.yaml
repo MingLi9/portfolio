@@ -20,6 +20,10 @@ jobs:
     - name: Build project
       run: CI=false npm run build
 
+- name: Verify root directory permissions
+      run: |
+        sshpass -p "${{ secrets.SFTP_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SFTP_USERNAME }}@ssh.strato.com "touch /testfile && rm /testfile"
+
     - name: Upload files via SFTP
       uses: appleboy/scp-action@v0.1.4
       with:
