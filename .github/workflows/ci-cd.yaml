@@ -23,8 +23,10 @@ jobs:
     - name: List contents of / before upload
       run: |
         sshpass -p "${{ secrets.SFTP_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_HOST }} "ls -la /home"
+    - name: List contents of / before upload
       run: |
         sshpass -p "${{ secrets.SFTP_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_HOST }} "ls -la /etc"
+    - name: List contents of / before upload
       run: |
         sshpass -p "${{ secrets.SFTP_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_HOST }} "ls -la /bin"
     # - name: Upload files via SFTP
