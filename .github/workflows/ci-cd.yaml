@@ -20,6 +20,9 @@ jobs:
     - name: Build project
       run: CI=false npm run build
 
+    - name: Debug SFTP Host
+      run: echo ${{ secrets.SFTP_HOST }}
+
     - name: Upload files via SFTP
       uses: appleboy/scp-action@v0.1.4
       with:
