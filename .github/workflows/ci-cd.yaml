@@ -31,8 +31,8 @@ jobs:
         username: ${{ secrets.SFTP_USERNAME }}
         password: ${{ secrets.SFTP_PASSWORD }}
         port: ${{ secrets.SFTP_PORT }}
-        source: "build/static"
-        target: "/mnt/rid/24/04/546822404/htdocs/static"
+        source: "build/"
+        target: "/mnt/rid/24/04/546822404/htdocs/"
         debug: true
 
     - name: List contents of /static after upload
