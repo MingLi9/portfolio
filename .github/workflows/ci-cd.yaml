@@ -11,30 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # - name: Checkout code
-    #   uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-    # - name: Install dependencies
-    #   run: npm install
+    - name: Install dependencies
+      run: npm install
 
-    # - name: Build project
-    #   run: CI=false npm run build
+    - name: Build project
+      run: CI=false npm run build
 
-    - name: Debug SFTP Host
-      run: "echo SFTP_HOST: ${{ secrets.SFTP_HOST }}"
-
-    - name: Debug SFTP Username
-      run: "echo SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}"
-
-    - name: Debug SFTP Port
-      run: "echo SFTP_PORT: ${{ secrets.SFTP_PORT }}"
-
-    # - name: Upload files via SFTP
-    #   uses: appleboy/scp-action@v0.1.4
-    #   with:
-    #     host: ${{ secrets.SFTP_HOST }}
-    #     username: ${{ secrets.SFTP_USERNAME }}
-    #     password: ${{ secrets.SFTP_PASSWORD }}
-    #     port: ${{ secrets.SFTP_PORT }}
-    #     source: "build/"
-    #     target: "/"
+    - name: Upload files via SFTP
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        host: ssh.strato.com
+        username: ${{ secrets.SFTP_USERNAME }}
+        password: ${{ secrets.SFTP_PASSWORD }}
+        port: ${{ secrets.SFTP_PORT }}
+        source: "build/"
+        target: "/"
