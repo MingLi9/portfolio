@@ -18,9 +18,9 @@ const Project = () => {
                 <a href="https://Strato.com" rel="noreferrer" target="_blank">Strato.com</a>
             </p>
             <p>
-                With deployment to strato.com you need to use the
+                With deployment to strato.com you need to use the&nbsp;
                 <a href="https://www.strato-hosting.co.uk/faq/hosting/what-are-the-paths-on-your-system/#absoluter_pfad" rel="noreferrer" target="_blank">absolute path</a>
-                figuring this out is a bit tricky. You need to go "Je pakket" -&gt; "Overzicht" and scroll down untill you find a field that says "Webspace Pad".
+                &nbsp;figuring this out is a bit tricky. You need to go "Je pakket" -&gt; "Overzicht" and scroll down untill you find a field that says "Webspace Pad".
                 This is the absolute path to your root folder.
             </p>
         </>
