@@ -19,7 +19,7 @@ jobs:
 
     - name: Build project
       run: CI=false npm run build
-      
+
     - name: Upload files via SFTP
       uses: appleboy/scp-action@v0.1.4
       with:
@@ -29,3 +29,4 @@ jobs:
         port: ${{ secrets.SFTP_PORT }}
         source: "build/static"
         target: "/static"
+        debug: true
