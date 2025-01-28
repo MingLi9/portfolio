@@ -27,6 +27,6 @@ jobs:
         username: ${{ secrets.SFTP_USERNAME }}
         password: ${{ secrets.SFTP_PASSWORD }}
         port: ${{ secrets.SFTP_PORT }}
-        source: "/"
+        source: "build/"
         target: "/mnt/rid/24/04/546822404/htdocs/"
         debug: true
