@@ -20,13 +20,21 @@ jobs:
     - name: Build project
       run: CI=false npm run build
 
+    - name: List contents of /static before upload
+      run: |
+        sshpass -p "${{ secrets.SFTP_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_HOST }} "ls -la /static"
+
     - name: Upload files via SFTP
       uses: appleboy/scp-action@v0.1.4
       with:
-        host: ssh.strato.com
+        host: ${{ secrets.SFTP_HOST }}
         username: ${{ secrets.SFTP_USERNAME }}
         password: ${{ secrets.SFTP_PASSWORD }}
         port: ${{ secrets.SFTP_PORT }}
         source: "build/static"
         target: "/static"
         debug: true
+
+    - name: List contents of /static after upload
+      run: |
+        sshpass -p "${{ secrets.SFTP_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_HOST }} "ls -la /static"
