@@ -1,0 +1,49 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  # test:
+  #     runs-on: ubuntu-latest
+  #     if: github.ref == 'refs/heads/dev' || github.event.pull_request.base.ref == 'main'
+  #     steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
+
+  #     - name: Install dependencies
+  #       run: npm install
+
+  #     - name: Run unit tests
+  #       run: npm test
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.event.pull_request.base.ref == 'main'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: CI=false npm run build
+
+    - name: Upload files via SFTP
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        host: ${{ secrets.SFTP_HOST }}
+        username: ${{ secrets.SFTP_USERNAME }}
+        password: ${{ secrets.SFTP_PASSWORD }}
+        port: ${{ secrets.SFTP_PORT }}
+        source: "build/*"
+        target: "/mnt/rid/24/04/546822404/htdocs/"
+        strip_components: 1
