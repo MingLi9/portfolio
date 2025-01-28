@@ -22,7 +22,7 @@ jobs:
 
     - name: Verify root directory permissions
       run: |
-        sshpass -p "${{ secrets.SFTP_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_HOST }} "touch /testfile && rm /testfile"
+        sshpass -p "${{ secrets.SFTP_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_HOST }} "touch /static/testfile && rm /static/testfile"
 
     - name: Upload files via SFTP
       uses: appleboy/scp-action@v0.1.4
@@ -31,5 +31,5 @@ jobs:
         username: ${{ secrets.SFTP_USERNAME }}
         password: ${{ secrets.SFTP_PASSWORD }}
         port: ${{ secrets.SFTP_PORT }}
-        source: "build/"
-        target: "/"
+        source: "build/static"
+        target: "/static"
