@@ -21,13 +21,13 @@ jobs:
     #   run: CI=false npm run build
 
     - name: Debug SFTP Host
-      run: "SFTP_HOST: ${{ secrets.SFTP_HOST }}"
+      run: "echo SFTP_HOST: ${{ secrets.SFTP_HOST }}"
 
     - name: Debug SFTP Username
-      run: "SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}"
+      run: "echo SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}"
 
     - name: Debug SFTP Port
-      run: "SFTP_PORT: ${{ secrets.SFTP_PORT }}"
+      run: "echo SFTP_PORT: ${{ secrets.SFTP_PORT }}"
 
     # - name: Upload files via SFTP
     #   uses: appleboy/scp-action@v0.1.4
