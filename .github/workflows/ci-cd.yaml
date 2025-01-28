@@ -4,11 +4,28 @@ on:
   push:
     branches:
       - main
-      - CI-CD
+      - dev
+  merge_request:
+    branches:
+      - main
+      - dev
 
 jobs:
+  # test:
+  #     runs-on: ubuntu-latest
+  #     if: github.ref == 'refs/heads/dev' || github.event.pull_request.base.ref == 'main'
+  #     steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
+
+  #     - name: Install dependencies
+  #       run: npm install
+
+  #     - name: Run unit tests
+  #       run: npm test
   deploy:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.event.pull_request.base.ref == 'main'
 
     steps:
     - name: Checkout code
