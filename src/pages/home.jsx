@@ -50,12 +50,6 @@ function Home() {
 
   return (
     <>
-      {/* <div className="home">
-        <Hero />
-        <ProjectCard img={ProgrammingIMG} alt="Project preview" side="Left" title={programTitle} text={programText} cv={true} />
-        <ProjectCard side="Center" title={loremIpsumTitle} text={loremIpsumText} />
-        <ProjectCard img={ProgrammingIMG} alt="Project preview" side="Right" title={programTitle} text={programText} socials={true} />
-      </div> */}
       <div className="app">
         <div
           className="container"
