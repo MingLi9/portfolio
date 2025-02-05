@@ -117,3 +117,7 @@ body {
         grid-area: 1 / 2 / 5 / 5;
     }
 }
+
+.text-black {
+    color: black;
+}

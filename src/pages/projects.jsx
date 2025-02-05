@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Project = () => {
     return (
         <>
@@ -22,6 +24,9 @@ const Project = () => {
                 <a href="https://www.strato-hosting.co.uk/faq/hosting/what-are-the-paths-on-your-system/#absoluter_pfad" rel="noreferrer" target="_blank">absolute path</a>
                 &nbsp;figuring this out is a bit tricky. You need to go "Je pakket" -&gt; "Overzicht" and scroll down untill you find a field that says "Webspace Pad".
                 This is the absolute path to your root folder.
+            </p>
+            <p>
+                <Link to="/projects/audio_controller">DIY Audio Controller</Link>
             </p>
         </>
     )
