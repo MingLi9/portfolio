@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const ProjectCard = (props) => {
     const { img, alt, side, title, text } = props;
     const leftSide = (side === "Left" ? "Left" : "Right");
     const rightSide = (side === "Left" ? "Right" : "Left");
-    const center = (side === "Center" ? true : false);
+    const center = side === "Center";
     return (
         <>
             {!center
@@ -32,6 +33,14 @@ const ProjectCard = (props) => {
             }
         </>
     );
+};
+
+ProjectCard.propTypes = {
+    img: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+    side: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
 };
 
 export default ProjectCard;

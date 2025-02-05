@@ -86,12 +86,13 @@ body {
 }
 
 .parent-sides {
-    margin: 2rem 0rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    width: 90%;
+    margin-top: -5%;
 
     .Left {
         grid-area: 1 / 1 / 2 / 3;
@@ -108,9 +109,15 @@ body {
     grid-template-rows: repeat(4, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    width: 90%;
+    margin-top: -5%;
 
     .Center {
         text-align: center;
         grid-area: 1 / 2 / 5 / 5;
     }
+}
+
+.text-black {
+    color: black;
 }
