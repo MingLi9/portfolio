@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import Section from "./Section";
 
 function AC_controller() {
     const containerRef = useRef(null);
@@ -44,19 +45,6 @@ function AC_controller() {
         }
     };
 
-    function Section({ title, children }) {
-        return (
-            <section className="section">
-                <div className='parent-center'>
-                    <div className="Center text-black">
-                        {title && <h1>{title}</h1>}
-                        {children}
-                    </div>
-                </div>
-            </section>
-        );
-    }
-
     return (
         <>
             <div className="container"
@@ -65,9 +53,7 @@ function AC_controller() {
             >
                 <Section title="Building My Own Modular Audio Controller">
                     <p>
-                        A while back, I came across an advertisement for a modular audio controller for laptops and desktops
-                        &#40;<a href="https://modue.com/" rel="noreferrer" target="_blank">Modue</a>&#41;.
-                        I was immediately intrigued, having a physical controller would mean I wouldn&#39;t have to open the Windows volume mixer every time I wanted to adjust audio while gaming, watching videos, or working.
+                        A while back, I came across an advertisement for a modular audio controller for laptops and desktops &#40;<a href="https://modue.com/" rel="noreferrer" target="_blank">Modue</a>&#41;. I was immediately intrigued, having a physical controller would mean I wouldn&#39;t have to open the Windows volume mixer every time I wanted to adjust audio while gaming, watching videos, or working.
                     </p>
                     <p>
                         However, at &euro;150 at launch, it was out of my budget. While there were cheaper alternatives, they either lacked proper integration with Windows sound channels or weren&#39;t expandable with additional sliders or knobs. So, I decided to take on a challenge: build my own modular audio controller!
@@ -87,14 +73,12 @@ function AC_controller() {
                     </p>
                 </Section>
 
-                <Section title="">
+                <Section>
                     <p>
                         With the Arduino sending data, I now needed a way to interpret this data and control the correct Windows audio channels. This turned out to be more challenging than expected—finding documentation on the necessary Windows executables was surprisingly difficult.
                     </p>
                     <p>
-                        Initially, I assumed C# would have sufficient resources, but that turned out to be a dead end.Fortunately, I found a similar project written in Go
-                        &#40;<a href="https://github.com/omriharel/deej" rel="noreferrer" target="_blank">deej</a>&#41;
-                        , which helped me understand how to integrate the system into Python.With this knowledge, I was able to create a basic prototype and start planning for an expanded version with multiple controls.
+                        Initially, I assumed C# would have sufficient resources, but that turned out to be a dead end.Fortunately, I found a similar project written in Go &#40;<a href="https://github.com/omriharel/deej" rel="noreferrer" target="_blank">deej</a>&#41;, which helped me understand how to integrate the system into Python.With this knowledge, I was able to create a basic prototype and start planning for an expanded version with multiple controls.
                     </p>
                 </Section >
 

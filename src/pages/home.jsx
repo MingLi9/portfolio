@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import ProgrammingIMG from '../img/programming.png';
 import ProjectCard from '../components/projectCards';
-import Hero from '../components/hero';
 import { programTitle, programText, loremIpsumTitle, loremIpsumText } from '../texts/texts';
 
 function Home() {
