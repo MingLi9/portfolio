@@ -11,39 +11,61 @@ on:
       - dev
 
 jobs:
-  # test:
-  #     runs-on: ubuntu-latest
-  #     if: github.ref == 'refs/heads/dev' || github.event.pull_request.base.ref == 'main'
-  #     steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
-
-  #     - name: Install dependencies
-  #       run: npm install
-
-  #     - name: Run unit tests
-  #       run: npm test
   deploy:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' || github.event.pull_request.base.ref == 'main'
+
+    # Alleen deploy naar production op main
+    if: github.ref == 'refs/heads/main'
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
+
+    - name: Show build context
+      run: |
+        echo "Branch: $GITHUB_REF"
+        echo "Repo: $GITHUB_REPOSITORY"
+        ls -la
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
 
     - name: Build project
       run: CI=false npm run build
 
-    - name: Upload files via SFTP
+    # 🔍 Debug: check wat je gaat deployen
+    - name: Inspect build output
+      run: |
+        echo "Build output:"
+        ls -la build
+        echo "Index check:"
+        cat build/index.html | head -n 20
+
+    # 🧪 Safety check: voorkomen lege deploy
+    - name: Validate build exists
+      run: |
+        if [ ! -f build/index.html ]; then
+          echo "ERROR: build/index.html not found"
+          exit 1
+        fi
+
+    # 🚀 Deploy via SFTP
+    - name: Deploy to STRATO portfolio folder
       uses: appleboy/scp-action@v0.1.4
       with:
         host: ${{ secrets.SFTP_HOST }}
         username: ${{ secrets.SFTP_USERNAME }}
         password: ${{ secrets.SFTP_PASSWORD }}
         port: ${{ secrets.SFTP_PORT }}
+
         source: "build/*"
-        target: "/mnt/rid/24/04/546822404/htdocs/"
+        target: "/portfolio"
+
         strip_components: 1
+
+    # 🧾 Post-deploy logging (zichtbaar in Actions log)
+    - name: Deployment summary
+      run: |
+        echo "Deployed to: /portfolio"
+        echo "Files pushed:"
+        ls -la build
