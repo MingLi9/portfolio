@@ -18,21 +18,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: List remote / (debug)
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.SFTP_HOST }}
-        username: ${{ secrets.SFTP_USERNAME }}
-        password: ${{ secrets.SFTP_PASSWORD }}
-        port: ${{ secrets.SFTP_PORT }}
-        script: |
-          echo "=== ROOT ==="
-          pwd
-          ls -la
-
-          echo "=== PORTFOLIO ==="
-          ls -la portfolio || echo "portfolio not found"
-
     - name: Show build context
       run: |
         echo "Branch: $GITHUB_REF"
@@ -62,7 +47,7 @@ jobs:
         fi
 
     # 🚀 Deploy via SFTP
-    - name: Deploy to STRATO portfolio folder
+    - name: Deploy to STRATO portfolio
       uses: appleboy/scp-action@v0.1.4
       with:
         host: ${{ secrets.SFTP_HOST }}
@@ -71,9 +56,11 @@ jobs:
         port: ${{ secrets.SFTP_PORT }}
 
         source: "build/*"
-        target: "/portfolio"
+        target: "/home/www/portfolio"
 
         strip_components: 1
+        overwrite: true
+        rm: false
 
     # 🧾 Post-deploy logging (zichtbaar in Actions log)
     - name: Deployment summary
