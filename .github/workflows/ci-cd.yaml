@@ -18,6 +18,21 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: List remote / (debug)
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SFTP_HOST }}
+        username: ${{ secrets.SFTP_USERNAME }}
+        password: ${{ secrets.SFTP_PASSWORD }}
+        port: ${{ secrets.SFTP_PORT }}
+        script: |
+          echo "=== ROOT ==="
+          pwd
+          ls -la
+
+          echo "=== PORTFOLIO ==="
+          ls -la portfolio || echo "portfolio not found"
+
     - name: Show build context
       run: |
         echo "Branch: $GITHUB_REF"
