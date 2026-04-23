@@ -56,15 +56,8 @@ jobs:
         port: ${{ secrets.SFTP_PORT }}
 
         source: "build/*"
-        target: "/home/www/portfolio"
+        target: ${{ secrets.SFTP_TARGET_DIR }}
 
         strip_components: 1
         overwrite: true
         rm: false
-
-    # 🧾 Post-deploy logging (zichtbaar in Actions log)
-    - name: Deployment summary
-      run: |
-        echo "Deployed to: /portfolio"
-        echo "Files pushed:"
-        ls -la build
